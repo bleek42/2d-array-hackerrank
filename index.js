@@ -44,25 +44,38 @@
 */
 
 const hourglassSum = (arr) => {
-    if (!Array.isArray(arr)) throw new TypeError('input must be an array!');
+  if (!Array.isArray(arr)) throw new TypeError('input must be an array!');
 
-    let result;
-    for (let i = 0; i < arr.length; i++) {
-        if (!Array.isArray(arr[i])) throw new TypeError('input must be a 2D array');
-        for (let j = 0; j < arr[i].length; j++) {
-            console.log(arr[i][j]);
-        }
+  const result = [];
+
+  for (let i = 0; i <= 3; i++) {
+    if (!Array.isArray(arr[i])) throw new TypeError('input must be a 2D array');
+    for (let j = 0; j <= 3; j++) {
+      console.log(arr[i][j]);
+      let sum = 0;
+
+      sum += arr[i][j];
+      sum += arr[i][j + 1];
+      sum += arr[i][j + 2];
+      sum += arr[i + 1][j + 1];
+      sum += arr[i + 2][j];
+      sum += arr[i + 2][j + 1];
+      sum += arr[i + 2][j + 2];
+
+      result.push(sum);
     }
+  }
+  return (result.length > 0) ? Math.max(...result) : 0;
 };
 
 const my1Darr = [1, 2, 6, 5, 2, 7];
 const my2Darr = [
-    [1, 1, 1, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0],
-    [1, 1, 1, 0, 0, 0],
-    [0, 0, 2, 4, 4, 0],
-    [0, 0, 0, 2, 0, 0],
-    [0, 0, 1, 2, 4, 0],
+  [1, 1, 1, 0, 0, 0],
+  [0, 1, 0, 0, 0, 0],
+  [1, 1, 1, 0, 0, 0],
+  [0, 0, 2, 4, 4, 0],
+  [0, 0, 0, 2, 0, 0],
+  [0, 0, 1, 2, 4, 0],
 ];
 
 console.log(hourglassSum(my2Darr));
